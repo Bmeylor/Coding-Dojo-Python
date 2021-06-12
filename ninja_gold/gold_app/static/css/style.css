@@ -1,0 +1,9 @@
+#main_content{
+    display:flex;justify-content: space-between;
+    padding:5px
+}
+
+.content{
+    width:200px;
+    border:15px black;
+}

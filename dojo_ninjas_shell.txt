@@ -1,0 +1,229 @@
+Microsoft Windows [Version 10.0.19042.928]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Brandon>call djangostack\scripts\activate
+
+(DjangoStack) C:\Users\Brandon>cd djangostack\django\django
+The system cannot find the path specified.
+
+(DjangoStack) C:\Users\Brandon>cd djangostack\djano
+The system cannot find the path specified.
+
+(DjangoStack) C:\Users\Brandon>cd djangostack
+
+(DjangoStack) C:\Users\Brandon\DjangoStack>cd django
+
+(DjangoStack) C:\Users\Brandon\DjangoStack\Django>cd django_intro
+
+(DjangoStack) C:\Users\Brandon\DjangoStack\Django\Django_intro>django-admin startproject dojo_project
+
+(DjangoStack) C:\Users\Brandon\DjangoStack\Django\Django_intro>cd dojo_project
+
+(DjangoStack) C:\Users\Brandon\DjangoStack\Django\Django_intro\dojo_project>django-admin startapp ninja_app
+
+(DjangoStack) C:\Users\Brandon\DjangoStack\Django\Django_intro\dojo_project>py manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 17 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+April 17, 2021 - 16:41:43
+Django version 2.2.4, using settings 'dojo_project.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+(DjangoStack) C:\Users\Brandon\DjangoStack\Django\Django_intro\dojo_project>py manage.py makemigrations
+Migrations for 'ninja_app':
+  ninja_app\migrations\0001_initial.py
+    - Create model Dojo
+    - Create model Ninja
+
+(DjangoStack) C:\Users\Brandon\DjangoStack\Django\Django_intro\dojo_project>py manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, ninja_app, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying ninja_app.0001_initial... OK
+  Applying sessions.0001_initial... OK
+
+(DjangoStack) C:\Users\Brandon\DjangoStack\Django\Django_intro\dojo_project>py manage.py shell
+Python 3.9.4 (tags/v3.9.4:1f2e308, Apr  4 2021, 13:27:16) [MSC v.1928 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from ninja_app.models import *
+>>> cobra = Dojo.objects.create(name = "cobra", city = "LA", stat = "CA")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\Brandon\DjangoStack\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Brandon\DjangoStack\lib\site-packages\django\db\models\query.py", line 420, in create
+    obj = self.model(**kwargs)
+  File "C:\Users\Brandon\DjangoStack\lib\site-packages\django\db\models\base.py", line 501, in __init__
+    raise TypeError("%s() got an unexpected keyword argument '%s'" % (cls.__name__, kwarg))
+TypeError: Dojo() got an unexpected keyword argument 'stat'
+>>> cobra = Dojo.objects.create(name = "cobra", city = "LA", state = "CA")
+>>> unity = Dojo.objects.create(name = "unity", city = "LA", state = "CA")
+>>> xia = Dojo.objects.create(name = "xia", city = "LA", state = "CA")
+>>> Dojo.objects.all()
+<QuerySet [<Dojo: Dojo object (1)>, <Dojo: Dojo object (2)>, <Dojo: Dojo object (3)>]>
+>>> dojo_to_delete = Dojo.objects.get(id=1)
+>>> dojo_to_delete.delete()
+(1, {'ninja_app.Ninja': 0, 'ninja_app.Dojo': 1})
+>>> dojo_to_delete2= Dojo.objects.get(id=2)
+>>> dojo_to_delete2.delete()
+(1, {'ninja_app.Ninja': 0, 'ninja_app.Dojo': 1})
+>>> dojo_to_delete3 = Dojo.objects.get(id=3)
+>>> dojo_to_delete3.delete()
+(1, {'ninja_app.Ninja': 0, 'ninja_app.Dojo': 1})
+>>> Dojo.objects.all()
+<QuerySet []>
+>>> cobra = Dojo.objects.create(name = "cobra", city = "san jose", state = "CA")
+>>> kai = Dojo.objects.create(name = "kai", city = "LA", state = "CA")
+>>> santa = Dojo.objects.create(name = "santa", city = "santa ana", state = "CA")
+>>> kai
+<Dojo: Dojo object (5)>
+>>> santa
+<Dojo: Dojo object (6)>
+>>> Ninja1_cobra = Ninja.objects.create(first_name = "glitch", last_name "glithchy",dojo = cobra)
+  File "<console>", line 1
+    Ninja1_cobra = Ninja.objects.create(first_name = "glitch", last_name "glithchy",dojo = cobra)
+                                                                         ^
+SyntaxError: positional argument follows keyword argument
+>>> Ninja1_cobra = Ninja.objects.create(first_name = "glitch", last_name = "glithchy",dojo = cobra)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\Brandon\DjangoStack\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Brandon\DjangoStack\lib\site-packages\django\db\models\query.py", line 420, in create
+    obj = self.model(**kwargs)
+  File "C:\Users\Brandon\DjangoStack\lib\site-packages\django\db\models\base.py", line 501, in __init__
+    raise TypeError("%s() got an unexpected keyword argument '%s'" % (cls.__name__, kwarg))
+TypeError: Ninja() got an unexpected keyword argument 'dojo'
+>>> Ninja1_cobra = Ninja.objects.create(first_name = "glitch", last_name = "glithchy",student = cobra)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\Brandon\DjangoStack\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Brandon\DjangoStack\lib\site-packages\django\db\models\query.py", line 420, in create
+    obj = self.model(**kwargs)
+  File "C:\Users\Brandon\DjangoStack\lib\site-packages\django\db\models\base.py", line 501, in __init__
+    raise TypeError("%s() got an unexpected keyword argument '%s'" % (cls.__name__, kwarg))
+TypeError: Ninja() got an unexpected keyword argument 'student'
+>>> Ninja1_cobra = Ninja.objects.create(first_name = "glitch", last_name = "glithchy",school = cobra)
+>>> Ninja2_cobra = Ninja.objects.create(first_name = "brian", last_name = "xia",school = cobra)
+>>> Ninja3_cobra = Ninja.objects.create(first_name = "tyler", last_name = "unity",school = cobra)
+>>> Ninja1_kai = Ninja.objects.create(first_name = "mauro", last_name = "martinez",school = kai)
+>>> Ninja2_kai = Ninja.objects.create(first_name = "aiman", last_name = "asmar",school = kai)
+>>> Ninja3_kai = Ninja.objects.create(first_name = "ricky", last_name = "rich",school = kai)
+>>> Ninja1_santa = Ninja.objects.create(first_name = "rafs", last_name = "raffy",school = santa)
+>>> Ninja2_santa = Ninja.objects.create(first_name = "maxi", last_name = "padd",school = santa)
+>>> Ninja3_santa = Ninja.objects.create(first_name = "nissin", last_name = "medio",school = santa)
+>>> santa.objects.get.all
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\Brandon\DjangoStack\lib\site-packages\django\db\models\manager.py", line 176, in __get__
+    raise AttributeError("Manager isn't accessible via %s instances" % cls.__name__)
+AttributeError: Manager isn't accessible via Dojo instances
+>>> ninja3_santa.student.created_at
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'ninja3_santa' is not defined
+>>> Ninja3_santa.studen.created_at
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Ninja' object has no attribute 'studen'
+>>> Ninja3_santa.student.created_at
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Ninja' object has no attribute 'student'
+>>> Ninja3_santa.school.created_at
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Dojo' object has no attribute 'created_at'
+>>> Ninja.objects.all()
+<QuerySet [<Ninja: Ninja object (1)>, <Ninja: Ninja object (2)>, <Ninja: Ninja object (3)>, <Ninja: Ninja object (4)>, <Ninja: Ninja object (5)>, <Ninja: Ninja object (6)>, <Ninja: Ninja object (7)>, <Ninja: Ninja object (8)>, <Ninja: Ninja object (9)>]>
+>>> santa.ninjas.all()
+<QuerySet [<Ninja: Ninja object (7)>, <Ninja: Ninja object (8)>, <Ninja: Ninja object (9)>]>
+>>> cobra.ninja.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Dojo' object has no attribute 'ninja'
+>>> cobra.ninjas.all()
+<QuerySet [<Ninja: Ninja object (1)>, <Ninja: Ninja object (2)>, <Ninja: Ninja object (3)>]>
+>>> desc = models.TextField()
+>>> python manage.py makemigrations
+  File "<console>", line 1
+    python manage.py makemigrations
+           ^
+SyntaxError: invalid syntax
+>>> EXIT()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'EXIT' is not defined
+>>> exit
+Use exit() or Ctrl-Z plus Return to exit
+>>> exit()
+
+(DjangoStack) C:\Users\Brandon\DjangoStack\Django\Django_intro\dojo_project>py manage.py makemigrations
+You are trying to add a non-nullable field 'desc' to dojo without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 2
+
+(DjangoStack) C:\Users\Brandon\DjangoStack\Django\Django_intro\dojo_project>py manage.py makemigrations
+You are trying to add a non-nullable field 'description' to dojo without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> Fun
+Invalid input: name 'Fun' is not defined
+>>> exit
+
+(DjangoStack) C:\Users\Brandon\DjangoStack\Django\Django_intro\dojo_project>py manage.py makemigrations
+You are trying to add a non-nullable field 'description' to dojo without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 2
+
+(DjangoStack) C:\Users\Brandon\DjangoStack\Django\Django_intro\dojo_project>py manage.py makemigrations
+Migrations for 'ninja_app':
+  ninja_app\migrations\0002_dojo_description.py
+    - Add field description to dojo
+
+(DjangoStack) C:\Users\Brandon\DjangoStack\Django\Django_intro\dojo_project>py manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, ninja_app, sessions
+Running migrations:
+  Applying ninja_app.0002_dojo_description... OK
+
+(DjangoStack) C:\Users\Brandon\DjangoStack\Django\Django_intro\dojo_project>python manage.py shell
+Python 3.9.4 (tags/v3.9.4:1f2e308, Apr  4 2021, 13:27:16) [MSC v.1928 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from ninja_app.models import *
+>>> Dojo.objects.create(name = "cool", city = "LA", state = "CA", description = "cool place to be")
+<Dojo: Dojo object (7)>
+>>>

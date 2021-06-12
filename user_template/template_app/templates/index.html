@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>First_Name</td>
+                <td>Last_Name</td>
+                <td>Email</td>
+                <td>Age</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{user.first_name}}</td>
+                <td>{{user.last_name}}</td>
+                <td>{{user.email_address}}</td>
+                <td>{{user.age}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action='/add_user' method='post'>
+            {% csrf_token %}
+            First Name:
+            <input name="text" name = "first_name">
+            
+            Last Name:
+            <input name="text" name = "last_name">
+            
+            Email:
+            <input name="text" name = "email_address">
+            
+            Age:
+            <input name="number" name = "age">
+
+            <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Registration</h1>
+        <form action='users/register' method="POST">
+            {% csrf_token %}
+            First Name:
+            <input type= "text" name='first_name' id="first_name">
+            Last Name:
+            <input type= "text" name='last_name' id="last_name">
+            Email:
+            <input type= "email" name='email' id="email">
+            Password:
+            <input type= "password" name='password' id="password">
+            Confirm PW:
+            <input type= "password" name='confirm_password' id="confirm_password">
+            <button>Register</button>
+        </form>
+        {% if messages %}
+        <ul class="messages">    
+        {% for message in messages %}    
+            <li style='color: red;'>{{ message }}</li>    
+        {% endfor %}
+        </ul>
+        {% endif %}
+    <h1>Login</h1>
+        <form action='/users/login' method="POST">
+            {% csrf_token %}
+            Email:
+            <input type= "email" name='email' id="email">
+            Password:
+            <input type= "password" name='password' id="password">
+            <button>Log In</button>
+        </form>
+        {% if messages %}
+        <ul class="messages">    
+        {% for message in messages %}    
+            <li style='color: red;'>{{ message }}</li>    
+        {% endfor %}
+        </ul>
+        {% endif %}
+</body>
+</html>
